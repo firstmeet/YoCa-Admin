@@ -14,3 +14,19 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::auth();
+Route::get('home', 'HomeController@index');
+
+Route::group(['middleware' => ['web'],'namespace'=>'Admin'], function () {
+
+
+
+    Route::get('admin/login', 'AuthController@getLogin');
+    Route::post('admin/login', 'AuthController@postLogin');
+    Route::get('admin/register', 'AuthController@getRegister');
+    Route::post('admin/register', 'AuthController@postRegister');
+    Route::get('admin', 'IndexController@index');
+
+});
+
+
